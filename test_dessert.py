@@ -1,51 +1,53 @@
-from dessert import Candy, Cookie, IceCream, Sundae, DessertItem
+from dessert import Order, Candy, Cookie, IceCream, Sundae, DessertItem
 
 """py_tests can be ran with python -m pytest test_dessert.py in the Terminal"""
 
-def new_Candy():
-    return Candy("test candy", 2.56, 1.50)
+
+def new_candy():
+    return Candy("test candy", 1.50, 2.56)
 
 
-def new_Cookie():
+def new_cookie():
     return Cookie("test cookie", 12, 12.99)
 
 
-def new_IceCream():
+def new_ice_cream():
     return IceCream("test ice cream", 3, 1.99)
 
 
-def new_Sundae():
-    return Sundae("test sundae", "Fudge", 1.59 )
+def new_sundae():
+    return Sundae("test sundae", 3, .69, "test topping", 1.29)
 
 
-def test_Candy():
-    assert new_Candy().candy_weight == 2.56
-    assert new_Candy().price_per_pound == 1.50
+def test_candy():
+    assert new_candy().name == "test candy"
+    assert new_candy().price == 1.5
+    assert new_candy().candy_weight == 2.56
 
 
-def test_Cookie():
-    assert new_Cookie().cookie_quantity == 12
-    assert new_Cookie().price_per_dozen == 12.99
+def test_cookie():
+    assert new_cookie().name == "test cookie"
+    assert new_cookie().cookie_quantity == 12
+    assert new_cookie().price == 12.99
 
 
-def test_IceCream():
-    assert new_IceCream().scoop_count == 3
-    assert new_IceCream().price_per_scoop == 1.99
+def test_icecream():
+    assert new_ice_cream().name == "test ice cream"
+    assert new_ice_cream().scoop == 3
+    assert new_ice_cream().price == 1.99
 
 
-def test_Sundae():
-    assert new_Sundae().topping_name == "Fudge"
-    assert new_Sundae().topping_price == 1.59
+def test_sundae():
+    assert new_sundae().name == "test sundae"
+    assert new_sundae().scoop == 3
+    assert new_sundae().price == 0.69
+    assert new_sundae().topping_name == "test topping"
+    assert new_sundae().topping_price == 1.29
 
 
-# def test_constructor():
-#     # Test with a name passed in
-#     candy = DessertItem("Reese's Egg")
-#     assert candy.name == "Reese's Egg"
-#
-#     # Test with no name passed in
-#     candy = DessertItem()
-#     assert candy.name == ""
+
+
+
 
 
 

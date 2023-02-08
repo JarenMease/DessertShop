@@ -1,11 +1,6 @@
 from dessert import Candy, Cookie, IceCream, Sundae, Order
 import receipt
 
-from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, TableStyle
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
-
 
 def main():
     my_order = Order()

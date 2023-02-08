@@ -37,7 +37,7 @@ class Cookie(DessertItem):
         self.cookie_quantity = cookie_quantity
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.cookie_quantity)/12
+        cost = ((float(self.price) / 12) * float(self.cookie_quantity))
         return cost
 
 
@@ -56,13 +56,13 @@ class Sundae(IceCream, DessertItem):
     """Sundae class defines the toppings and price per"""
     def __init__(self, name="", scoop=float, price=float, topping_name="", topping_price=float):
         # my_order.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
-        super().__init__(name, scoop, price)
+        super().__init__((topping_name + " " + name + " Sundae"), scoop, price)
         # IceCream(scoop)
         self.topping_name = topping_name
         self.topping_price = topping_price
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.scoop) + float(self.topping_price)
+        cost = (float(self.price) * float(self.scoop)) + float(self.topping_price)
         return cost
 
 
@@ -90,11 +90,3 @@ class Order:
 
     def __len__(self):
         return len(self.order)
-
-
-
-
-
-
-
-

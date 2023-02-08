@@ -1,30 +1,12 @@
-# imports module
 from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, TableStyle
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 
-# data which we are going to display as tables
 
+def make_receipt(data):
 
-def main():
-
-    DATA = [
-        ["Name", "Cost", "Tax"],
-        [
-            "test name",
-            "test cost",
-            "test tax"
-        ],
-        [
-            "test name",
-            "test cost",
-            "test tax"
-        ],
-        ["Order Subtotals", "", ""],
-        ["Order Total", "", ""],
-        ["Total items in the order", "", ""]
-    ]
+    DATA = data
 
     # creating a Base Document Template of page size A4
     pdf = SimpleDocTemplate("receipt.pdf", pagesize=A4)
@@ -49,7 +31,7 @@ def main():
     style = TableStyle(
         [
             ("BOX", (0, 0), (-1, -1), 1, colors.black),
-            ("GRID", (0, 0), (4, 4), 1, colors.black),
+            ("GRID", (0, 0), (10, 10), 1, colors.black),
             ("BACKGROUND", (0, 0), (3, 0), colors.gray),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
             ("ALIGN", (0, 0), (-1, -1), "CENTER"),
@@ -63,7 +45,3 @@ def main():
     # final step which builds the
     # actual pdf putting together all the elements
     pdf.build([title, table])
-
-
-if __name__ == "__main__":
-    main()

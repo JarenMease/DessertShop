@@ -20,7 +20,8 @@ def main():
 
     for item in my_order.order:
         order_formatted.append([item.name, "$" + str(round(item.calculate_cost(), 2)), "$" + str(round(item.calculate_tax(), 2))])
-
+    
+    order_formatted.append(["-------------------", "", ""])
     order_formatted.append(["Order Subtotals:", "$" + str(round(my_order.order_cost(), 2)), "$" + str(round(my_order.order_tax(), 2))])
     order_formatted.append(["Order Total:", "", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2))])
     order_formatted.append(["Total number of items in the order:", "", len(my_order)])

@@ -100,10 +100,12 @@ def user_prompt_sundae():
     print("Enter the number of scoops: ")
     scoop = float(input().strip())
     print("Enter the price per scoop: ")
+    price = float(input().strip())
     print("Enter the topping: ")
     topping_name = input().strip()
     print("Enter the price for the topping: ")
-    return Sundae(name, scoop, topping_name)
+    topping_price = float(input().strip())
+    return Sundae(name, scoop, price, topping_name, topping_price)
 
 
 if __name__ == "__main__":

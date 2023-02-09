@@ -111,24 +111,36 @@ def test_Sundae():
     sundae = Sundae()
     assert sundae.name == ""
     assert sundae.scoop_count == 0
-    assert ice_cream.price_per_scoop == 0
+    assert sundae.price_per_scoop == 0
+    assert sundae.topping_name == ""
+    assert sundae.topping_price == ""
     # testing constructor for non-default values
-    assert new_IceCream().name == "test ice cream"
-    assert new_IceCream().scoop_count == 3
-    assert new_IceCream().price_per_scoop == 1.99
+    assert new_Sundae().name == "test sundae"
+    assert new_Sundae().scoop_count == 3
+    assert new_Sundae().price_per_scoop == .69
+    assert new_Sundae().topping_name == "test topping"
+    assert new_Sundae().topping_price == 1.29
     # modifying attribute values for default values
-    ice_cream_mod = IceCream()
-    ice_cream_mod.name = "Chocolate Chip"
-    assert ice_cream_mod.name == "Chocolate Chip"
-    ice_cream_mod.scoop_count = "6"
-    assert ice_cream_mod.scoop_count == "6"
-    ice_cream_mod.price_per_scoop = "6.99"
-    assert ice_cream_mod.price_per_scoop == "6.99"
+    sundae_mod = Sundae()
+    sundae_mod.name = "Chocolate"
+    assert sundae_mod.name == "Chocolate"
+    sundae_mod.scoop_count = "6"
+    assert sundae_mod.scoop_count == "6"
+    sundae_mod.price_per_scoop = "6.99"
+    assert sundae_mod.price_per_scoop == "6.99"
+    sundae_mod.topping_name = "Hot Fudge"
+    assert sundae_mod.topping_name == "Hot Fudge"
+    sundae_mod.topping_price = "1.99"
+    assert sundae_mod.topping_price == "1.99"
     # modifying attribute values for non-default values
-    ice_cream_mod2 = new_IceCream()
-    ice_cream_mod2.name = "Vanilla"
-    assert ice_cream_mod2.name == "Vanilla"
-    ice_cream_mod2.scoop_count = "8"
-    assert ice_cream_mod2.scoop_count == "8"
-    ice_cream_mod2.price_per_scoop = "10"
-    assert ice_cream_mod2.price_per_scoop == "10"
+    sundae_mod2 = new_Sundae()
+    sundae_mod2.name = "Vanilla"
+    assert sundae_mod2.name == "Vanilla"
+    sundae_mod2.scoop_count = "8"
+    assert sundae_mod2.scoop_count == "8"
+    sundae_mod2.price_per_scoop = "10"
+    assert sundae_mod2.price_per_scoop == "10"
+    sundae_mod2.topping_name = "Hot Fudge"
+    assert sundae_mod2.topping_name == "Hot Fudge"
+    sundae_mod2.topping_price = "1.99"
+    assert sundae_mod2.topping_price == "1.99"

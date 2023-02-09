@@ -19,7 +19,7 @@ def new_IceCream():
 
 
 def new_Sundae():
-    return Sundae("test sundae", "Fudge", 1.59)
+    return Sundae("test sundae", 3, 1.59, "test topping", .59)
 
 
 def test_Candy():

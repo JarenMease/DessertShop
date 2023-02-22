@@ -29,6 +29,8 @@ def test_Candy():
     assert candy.candy_weight == float
     assert candy.price == float
     assert candy.tax_percent == 7.25
+    assert candy.calculate_cost() == float
+    assert candy.calculate_tax() == float
     # testing constructor for non-default values
     assert new_Candy().name == "test candy"
     assert new_Candy().price == 1.50
@@ -73,6 +75,8 @@ def test_Cookie():
     assert cookie.cookie_quantity == int
     assert cookie.price == float
     assert cookie.tax_percent == 7.25
+    assert cookie.calculate_cost() == float
+    assert cookie.calculate_tax() == float
     # testing constructor for non-default values
     assert new_Cookie().name == "test cookie Cookies"
     assert new_Cookie().cookie_quantity == 12
@@ -117,6 +121,8 @@ def test_IceCream():
     assert ice_cream.scoop == float
     assert ice_cream.price == float
     assert ice_cream.tax_percent == 7.25
+    assert ice_cream.calculate_cost() == float
+    assert ice_cream.calculate_tax() == float
     # testing constructor for non-default values
     assert new_IceCream().name == "test ice cream Ice Cream"
     assert new_IceCream().scoop == 3
@@ -162,6 +168,8 @@ def test_Sundae():
     assert sundae.price == float
     assert sundae.topping_name == ""
     assert sundae.topping_price == float
+    assert sundae.calculate_cost() == float
+    assert sundae.calculate_tax() == float
     # assert sundae.calculate_cost() == ""
     assert sundae.tax_percent == 7.25
     # assert sundae.calculate_tax() == ""

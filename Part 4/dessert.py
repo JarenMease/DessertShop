@@ -15,7 +15,10 @@ class DessertItem(ABC):
 
     def calculate_tax(self):
         tax_rate = self.tax_percent / 100
-        total_cost = float(self.calculate_cost()) * tax_rate
+        if self.calculate_cost() == float:
+            total_cost = float
+        else:
+            total_cost = float(self.calculate_cost()) * tax_rate
         return total_cost
 
 
@@ -26,7 +29,10 @@ class Candy(DessertItem):
         self.candy_weight = candy_weight
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.candy_weight)
+        if self.price == float:
+            cost = float
+        else:
+            cost = float(self.price) * float(self.candy_weight)
         return cost
 
 
@@ -37,7 +43,10 @@ class Cookie(DessertItem):
         self.cookie_quantity = cookie_quantity
 
     def calculate_cost(self):
-        cost = ((float(self.price) / 12) * float(self.cookie_quantity))
+        if self.price == float:
+            cost = float
+        else:
+            cost = (float(self.price) / 12 * float(self.cookie_quantity))
         return cost
 
 
@@ -48,7 +57,10 @@ class IceCream(DessertItem):
         self.scoop = scoop
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.scoop)
+        if self.price == float:
+            cost = float
+        else:
+            cost = float(self.price) * float(self.scoop)
         return cost
 
 
@@ -62,7 +74,10 @@ class Sundae(IceCream, DessertItem):
         self.topping_price = topping_price
 
     def calculate_cost(self):
-        cost = (float(self.price) * float(self.scoop)) + float(self.topping_price)
+        if self.price == float:
+            cost = float
+        else:
+            cost = (float(self.price) * float(self.scoop)) + float(self.topping_price)
         return cost
 
 

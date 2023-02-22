@@ -3,10 +3,11 @@ from abc import ABC, abstractmethod
 
 class DessertItem(ABC):
     """Superclass of the Dessert Project"""
-    def __init__(self, name="", price=float, tax_percent=7.25):
+    def __init__(self, name="", price=float, unit=float, tax_percent=7.25):
         self.tax_percent = tax_percent
         self.name = name
         self.price = price
+        self.unit = unit
 
     @abstractmethod
     def calculate_cost(self):
@@ -21,24 +22,32 @@ class DessertItem(ABC):
 
 class Candy(DessertItem):
     """Candy class defines the weight of the candy and the price per pound"""
-    def __init__(self, name="", price=float, candy_weight=float):
-        super().__init__(name, price)
-        self.candy_weight = candy_weight
+    def __init__(self, name="", price=float, unit=float):
+        super().__init__(name, price, unit)
+        self.unit = unit
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.candy_weight)
+        cost = float(self.price) * float(self.unit)
         return cost
+
+    def __str__(self):
+        return {f"{self.name}, {self.unit}lbs, ${self.price()}/lb, ${self.calculate_cost()}, "
+                f"${self.calculate_tax()}"}
 
 
 class Cookie(DessertItem):
     """Cookie class defines the amount of cookies and the price per dozen"""
-    def __init__(self, name="", cookie_quantity=int, price=float):
-        super().__init__(name, price)
-        self.cookie_quantity = cookie_quantity
+    def __init__(self, name="", price=float, unit=float):
+        super().__init__(name, price, unit)
+        self.unit = unit
 
     def calculate_cost(self):
-        cost = ((float(self.price) / 12) * float(self.cookie_quantity))
+        cost = ((float(self.price) / 12) * float(self.unit))
         return cost
+
+    def __str__(self):
+        return {f"{self.name}, {self.unit}/cookies, {self.price()}/dozen, ${self.calculate_cost()},"
+                f"${self.calculate_tax()}"}
 
 
 class IceCream(DessertItem):
@@ -50,6 +59,10 @@ class IceCream(DessertItem):
     def calculate_cost(self):
         cost = float(self.price) * float(self.scoop)
         return cost
+
+    def __str__(self):
+        return {f"{self.name}, {self.scoop}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
+                f"${self.calculate_tax()}"}
 
 
 class Sundae(IceCream, DessertItem):
@@ -64,6 +77,10 @@ class Sundae(IceCream, DessertItem):
     def calculate_cost(self):
         cost = (float(self.price) * float(self.scoop)) + float(self.topping_price)
         return cost
+
+    def __str__(self):
+        return {f" {self.name}, {self.scoop}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
+                f"${self.calculate_tax()} \n{self.topping_name}, 1, ${self.topping_price}"}
 
 
 class Order:
@@ -87,6 +104,17 @@ class Order:
         for item in self.order:
             tax += item.calculate_tax()
         return tax
+
+    def item_count(self):
+        return len(self.order)
+
+    def __str__(self):
+        for item in self.order:
+            return {f" {self.add(item)}, {round(item.calculate_cost(), 2)}, {round(item.calculate_tax(), 2)}"}
+
+    # def __str__(self):
+    #     return f"Total items in the order: {self.item_count()}\nOrder Subtotal: ${self.order_cost():.2f}" \
+    #            f" {self.order_tax():.2f}\nOrder Total: ${self.order_cost() + self.order_tax():.2f}"
 
     def __len__(self):
         return len(self.order)

@@ -88,7 +88,7 @@ def main_menu():
     #
     # print("Total number of items in the order:", len(my_order))
     #
-    order_formatted.append(["Name", "Quantity", "Unit Price", "Cost", "Tax"])
+    order_formatted.append(["Name", "Quantity", "Unit Price", "Cost", "Tax", ])
     #
     # receipt.make_receipt(order_formatted)
 
@@ -98,8 +98,8 @@ def main_menu():
     for item in my_order.order:
         order_formatted.append([item.name, item.price, item.unit, round(item.calculate_cost(), 2),
                                 round(item.calculate_tax(), 2)])
-    order_formatted.append(["Order Subtotals:", round(my_order.order_cost(), 2), round(my_order.order_tax(), 2)])
-    order_formatted.append(["Order Total:", round(my_order.order_cost() + my_order.order_tax(), 2)])
+    order_formatted.append(["Order Subtotals:", " ", " ", round(my_order.order_cost(), 2), round(my_order.order_tax(), 2)])
+    order_formatted.append(["Order Total:", " ", " ", " ", round(my_order.order_cost() + my_order.order_tax(), 2)])
     order_formatted.append(["Total number of items in the order:", len(my_order)])
 
     # receipt.make_receipt(order_formatted)

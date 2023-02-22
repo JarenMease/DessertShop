@@ -32,7 +32,7 @@ def make_receipt(data):
         [
             ("BOX", (0, 0), (-1, -1), 1, colors.black),
             ("GRID", (0, 0), (10, 10), 1, colors.black),
-            ("BACKGROUND", (0, 0), (3, 0), colors.gray),
+            ("BACKGROUND", (0, 0), (4, 0), colors.gray),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
             ("ALIGN", (0, 0), (-1, -1), "CENTER"),
             ("BACKGROUND", (0, 1), (-1, -1), colors.white),

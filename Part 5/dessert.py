@@ -52,34 +52,32 @@ class Cookie(DessertItem):
 
 class IceCream(DessertItem):
     """Ice Cream class defines the scoop count and the price per"""
-    def __init__(self, name="", scoop=float, price=float):
+    def __init__(self, name="", price=float, unit=float):
         super().__init__(name, price)
-        self.scoop = scoop
+        self.unit = unit
 
     def calculate_cost(self):
-        cost = float(self.price) * float(self.scoop)
+        cost = float(self.price) * float(self.unit)
         return cost
 
     def __str__(self):
-        return {f"{self.name}, {self.scoop}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
+        return {f"{self.name}, {self.unit}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
                 f"${self.calculate_tax()}"}
 
 
 class Sundae(IceCream, DessertItem):
     """Sundae class defines the toppings and price per"""
-    def __init__(self, name="", scoop=float, price=float, topping_name="", topping_price=float):
-        # my_order.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
-        super().__init__((topping_name + " " + name + " Sundae"), scoop, price)
-        # IceCream(scoop)
+    def __init__(self, name="", unit=float, price=float, topping_name="", topping_price=float):
+        super().__init__((topping_name + " " + name + " Sundae"), unit, price)
         self.topping_name = topping_name
         self.topping_price = topping_price
 
     def calculate_cost(self):
-        cost = (float(self.price) * float(self.scoop)) + float(self.topping_price)
+        cost = (float(self.price) * float(self.unit)) + float(self.topping_price)
         return cost
 
     def __str__(self):
-        return {f" {self.name}, {self.scoop}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
+        return {f" {self.name}, {self.unit}/scoops, {self.price}/scoop, ${self.calculate_cost()}, "
                 f"${self.calculate_tax()} \n{self.topping_name}, 1, ${self.topping_price}"}
 
 
@@ -111,10 +109,6 @@ class Order:
     def __str__(self):
         for item in self.order:
             return {f" {self.add(item)}, {round(item.calculate_cost(), 2)}, {round(item.calculate_tax(), 2)}"}
-
-    # def __str__(self):
-    #     return f"Total items in the order: {self.item_count()}\nOrder Subtotal: ${self.order_cost():.2f}" \
-    #            f" {self.order_tax():.2f}\nOrder Total: ${self.order_cost() + self.order_tax():.2f}"
 
     def __len__(self):
         return len(self.order)

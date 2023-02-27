@@ -49,7 +49,8 @@ def main_menu():
                                 "$" + str(round(item.calculate_cost(), 2)), "$" + str(round(item.calculate_tax(), 2))])
     order_formatted.append(["Order Subtotals:", " ", "$" + str(round(my_order.order_cost(), 2)),
                             "$" + str(round(my_order.order_tax(), 2)), " "])
-    order_formatted.append(["Order Total:", " ", " ", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2)), " "])
+    order_formatted.append(
+        ["Order Total:", " ", " ", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2)), " "])
     order_formatted.append(["Total number of items in the order:", len(my_order), "", "", ""])
 
     import pandas as pd
@@ -105,4 +106,3 @@ def user_prompt_sundae():
 
 if __name__ == "__main__":
     main_menu()
-

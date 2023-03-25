@@ -45,12 +45,33 @@ def main_menu():
     order_formatted.append(["Name", "Quantity", "Unit Price", "Cost", "Tax", ])
 
     for item in my_order.order:
-        order_formatted.append([item.name, "$" + str(item.price), "$" + str(item.unit),
-                                "$" + str(round(item.calculate_cost(), 2)), "$" + str(round(item.calculate_tax(), 2))])
-    order_formatted.append(["Order Subtotals:", " ", "$" + str(round(my_order.order_cost(), 2)),
-                            "$" + str(round(my_order.order_tax(), 2)), " "])
-    order_formatted.append(["Order Total:", " ", " ", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2)), " "])
+        if isinstance(item, Sundae):
+            order_formatted.append([item.name, str(int(item.unit)) + " scoops", "$" + str(item.price) + "/scoop",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+            order_formatted.append([item.topping_name, str(round(item.unit, 1)), "$" + str(item.topping_price), " ", " "])
+        elif isinstance(item, Cookie):
+            order_formatted.append([item.name, str(int(item.unit)) + " cookies", "$" + str(item.price) + "/dozen",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        elif isinstance(item, Candy):
+            order_formatted.append([item.name, str(round(item.unit, 1)) + "lbs", "$" + str(item.price) + "/lb",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        elif isinstance(item, IceCream):
+            order_formatted.append([item.name, str(int(item.unit)) + " scoops", "$" + str(item.price) + "/scoop",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        else:
+            order_formatted.append([item.name, str(item.unit), "$" + str(item.price),
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+
     order_formatted.append(["Total number of items in the order:", len(my_order), "", "", ""])
+    order_formatted.append(["Order Subtotals:", " ", " ", "$" + str(round(my_order.order_cost(), 2)),
+                            "$" + str(round(my_order.order_tax(), 2))])
+    order_formatted.append(
+        ["Order Total:", " ", " ", " ", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2))])
 
     import pandas as pd
     df = pd.DataFrame(order_formatted)
@@ -105,4 +126,3 @@ def user_prompt_sundae():
 
 if __name__ == "__main__":
     main_menu()
-

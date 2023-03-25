@@ -1,10 +1,12 @@
 from dessert import Candy, Cookie, IceCream, Sundae, Order
 import receipt
+from freeze import Freezer
 
 
 def main_menu():
     my_order = Order()
     order_formatted = []
+    freezer = Freezer()
 
     while True:
         print("1: Candy\n2: Cookie\n3: Ice Cream\n4: Sundae\n"
@@ -42,16 +44,49 @@ def main_menu():
             continue
         return my_order
 
+    # Stock the freezer with some freezable items
+    freezer.put(Cookie("Oatmeal Raisin Cookies", 8))
+    freezer.put(Cookie("Chocolate Chip Cookies", 12))
+    freezer.put(IceCream("Pistachio Ice Cream", 4))
+    freezer.put(IceCream("Vanilla Ice Cream", 12))
+    freezer.put(Sundae("Hot Fudge Topping", 12))
+
     order_formatted.append(["Name", "Quantity", "Unit Price", "Cost", "Tax", ])
 
     for item in my_order.order:
-        order_formatted.append([item.name, "$" + str(item.price), "$" + str(item.unit),
-                                "$" + str(round(item.calculate_cost(), 2)), "$" + str(round(item.calculate_tax(), 2))])
+        if isinstance(item, Sundae):
+            order_formatted.append([item.name + " (" + item.packaging + ")", str(int(item.unit)) + " scoops", "$" + str(item.price) + "/scoop",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+            order_formatted.append(
+                [item.topping_name, str(round(item.unit, 1)), "$" + str(item.topping_price), " ", " "])
+        elif isinstance(item, Cookie):
+            order_formatted.append([item.name + " (" + item.packaging + ")", str(int(item.unit)) + " cookies", "$" + str(item.price) + "/dozen",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        elif isinstance(item, Candy):
+            order_formatted.append([item.name + " (" + item.packaging + ")", str(round(item.unit, 1)) + "lbs", "$" + str(item.price) + "/lb",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        elif isinstance(item, IceCream):
+            order_formatted.append([item.name + " (" + item.packaging + ")", str(int(item.unit)) + " scoops", "$" + str(item.price) + "/scoop",
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+        else:
+            order_formatted.append([item.name + " (" + item.packaging + ")", str(item.unit), "$" + str(item.price),
+                                    "$" + str(round(item.calculate_cost(), 2)),
+                                    "$" + str(round(item.calculate_tax(), 2))])
+
+    order_formatted.append(["Total number of items in the order:", len(my_order), "", "", ""])
+
     order_formatted.append(["Order Subtotals:", " ", "$" + str(round(my_order.order_cost(), 2)),
                             "$" + str(round(my_order.order_tax(), 2)), " "])
     order_formatted.append(
         ["Order Total:", " ", " ", "$" + str(round(my_order.order_cost() + my_order.order_tax(), 2)), " "])
-    order_formatted.append(["Total number of items in the order:", len(my_order), "", "", ""])
+
+    for item in my_order.order:
+        if isinstance(item, Freezer):
+            freezer.take(item.name)
 
     import pandas as pd
     df = pd.DataFrame(order_formatted)

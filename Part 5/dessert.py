@@ -22,9 +22,8 @@ class DessertItem(ABC):
 
 class Candy(DessertItem):
     """Candy class defines the weight of the candy and the price per pound"""
-    def __init__(self, name="", price=float, unit=float):
-        super().__init__(name, price, unit)
-        self.unit = unit
+    def __init__(self, name="", unit=float, price=float):
+        super().__init__(name, unit, price)
 
     def calculate_cost(self):
         cost = float(self.price) * float(self.unit)
@@ -37,9 +36,8 @@ class Candy(DessertItem):
 
 class Cookie(DessertItem):
     """Cookie class defines the amount of cookies and the price per dozen"""
-    def __init__(self, name="", price=float, unit=float):
-        super().__init__(name, price, unit)
-        self.unit = unit
+    def __init__(self, name="", unit=float, price=float):
+        super().__init__(name, unit, price)
 
     def calculate_cost(self):
         cost = ((float(self.price) / 12) * float(self.unit))
@@ -52,9 +50,8 @@ class Cookie(DessertItem):
 
 class IceCream(DessertItem):
     """Ice Cream class defines the scoop count and the price per"""
-    def __init__(self, name="", price=float, unit=float):
-        super().__init__(name, price)
-        self.unit = unit
+    def __init__(self, name="", unit=float, price=float):
+        super().__init__(name, unit, price)
 
     def calculate_cost(self):
         cost = float(self.price) * float(self.unit)
@@ -67,7 +64,7 @@ class IceCream(DessertItem):
 
 class Sundae(IceCream, DessertItem):
     """Sundae class defines the toppings and price per"""
-    def __init__(self, name="", unit=float, price=float, topping_name="", topping_price=float):
+    def __init__(self, name="", unit=int, price=float, topping_name="", topping_price=float):
         super().__init__((topping_name + " " + name + " Sundae"), unit, price)
         self.topping_name = topping_name
         self.topping_price = topping_price
